@@ -1,0 +1,17 @@
+@using Dynamix.Content5.Controls
+@using Dynamix.Content5.Resources
+@using Dynamix.Mvc
+@using Dynamix.Ui
+@using PROJECTNAME
+@model PROJECTNAME.(PATH_TO_MODEL).ReactComponentModel
+@{
+    Html.Assets().Resources.Add(Dynamix.Ui6.JQuery2ResourceInfo.Instance);
+    Html.Assets().Resources.Add(Dynamix.Ui6.DxClassResourceInfo.Instance);
+    Html.Assets().Resources.Add(Dynamix.Ui6.ServerMethodsResourceInfo.Instance);
+    Html.Assets().Resources.Add(new DiskFileJsIncludeItem("/Dynamix/Ui6/Js/Ui.Util.js", ResourceItem.ResourceLocation.Head));
+    Html.Assets().Resources.Add(new DiskFileJsIncludeItem("/Aktie/App/dist/App.js", ResourceItem.ResourceLocation.Head));
+    var id = Guid.NewGuid().ToString();
+    var props = Util.Json( Model.Props );
+}
+<div id="@id"></div>
+<script>App.MakeComponentByName("@Model.ComponentName", "@id", @Html.Raw(props));</script>
